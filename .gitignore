@@ -1,0 +1,43 @@
+# Run outputs and backup
+output/
+backup/
+*.out
+sounding.out
+profile.out
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+.eggs/
+*.egg-info/
+*.egg
+
+# Build artifacts (Fortran)
+*.o
+*.oo
+*.a
+*.mod
+
+# MATLAB
+*.asv
+
+# OS and editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Logs
+*.log

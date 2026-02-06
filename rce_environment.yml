@@ -1,0 +1,12 @@
+# Conda environment for Emanuel RCE single-column model
+# Create: conda env create -f rce_environment.yml
+# Activate: conda activate rce  (or: source /path/to/conda/bin/activate rce)
+
+name: rce
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy>=1.20
+  - matplotlib>=3.5

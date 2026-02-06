@@ -1,0 +1,57 @@
+Value  Default       Units         Parameter
+-----   -----        -----         ---------
+Integration Control:
+n         n                        Restart from last run?
+100.0     100.0      days          End time of integration
+5.0       5.0        minutes       Time step
+10.0      10.0       days          Graphics averaging time
+12.0      12.0       hours         Frequency of graphics output
+
+Radiation:
+y         y                        Interactive radiation?
+y         y                        Interactive clouds?
+y         y                        Interactive surface temp?
+3.0       3.0        hours         Frequency of radiation calls
+1360.0    1360.0     watts/m^2     Solar constant
+15.0      15.0       degrees       Latitude
+3         3          month         Sarting month
+1         1          days          Starting day
+0         0          hours         Starting hour
+n         n                        Time-dependent radiation?
+n         n                        Date-dependent radiation?
+n         n                        Diurnal-average radiation?
+y         y                        Annual-average radiation?
+n         n                        Calculate ocean albedo?
+0.32      0.32                     Surface albedo (if 'n' above)
+
+Greenhouse Gases (other than ozone):
+360.0     360.0      ppm           Mass concentration of CO2
+1.72      1.72       ppm           Mass concentrtion of CH4
+310.0     310.0      ppb           Mass concentration of N2O
+280.0     280.0      ppt           Mass concentration of CFC11
+484.0     484.0      ppt           Mass concentration of CFC12
+y         y                        Interactive water vapor?
+1.0       1.0                      H2O multiplier for radiation code
+1.0       1.0                      O3 multiplier for radiation code
+
+Convection:
+y         y                        Dry adiabatic adjustment?
+y         y                        Moist convection?
+
+Turbulent fluxes from surface:
+y         y                        Turn on turbulent fluxes?
+1.0       1.0                      Fraction of surface covered by water (0 for dry land)
+2         2          m             Mixed layer (or soil) depth
+5         5          m/s           Surface wind speed
+
+Background vertical velocity:
+y         y                        Cubic profile of omega?
+0.0       0.0        mb/hour       Extreme value of omega
+2000.0    2000.0     days          Period of omega
+80.0      80.0       mb            P at which omega=0 (top)
+1000.0    1000.0     mb		     P at which omega=0 (bottom)
+750.0     750.0      mb            P at which omega=extr. value
+
+Weak Temperature Gradient Mode:
+n          n                       Apply WTG approximation ?
+850.0     850.0      mb            P above which sndg. fixed
