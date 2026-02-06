@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue?style=flat-square)](https://www.python.org/downloads/)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-lightgrey?style=flat-square)]()
-[![Releases](https://img.shields.io/github/v/release/ankurk017/RCE_Emanuel?include_prereleases&style=flat-square)](https://github.com/ankurk017/RCE_Emanuel/releases)
+[![Releases](https://img.shields.io/github/v/release/ankurk017/RCE_1D_Emanuel?include_prereleases&style=flat-square)](https://github.com/ankurk017/RCE_1D_Emanuel/releases)
 
 1-D radiative–convective equilibrium model (Fortran core + Python for parameters and plotting).
 
@@ -15,6 +15,7 @@ This repository is an adaptation of the original **RCE MIT Single-Column Model**
 - **Conda environment**: `rce_environment.yml` and a shared conda env so students can run without installing conda or building the Fortran executable themselves.
 - **Build support**: A `Makefile` (and `make rebuild`) to recompile `rc_ver2unix` from `rc_ver2.f` on different systems (e.g. when `libgfortran` is missing).
 - **Run-directory bookkeeping**: The run scripts copy the parameter table and a readable parameter summary into each run directory for reproducibility.
+- **MATLAB scripts**: Parameter menus and run wrappers live in the `matlab/` folder (e.g. `run_model.m`, `get_parameters_ver2.m`). Run from the repo root with `addpath('matlab')` or from inside `matlab/`.
 
 ### Quick start
 
@@ -69,13 +70,13 @@ Positional form: you can pass the output folder as the first argument instead of
 > [!TIP]
 > To get plots automatically after a run, add `--plot yes`; figures are written to `output/figs/`.
 
-- **[Common issues](TROUBLESHOOTING.md)** — libgfortran and other troubleshooting.
-- **[Contributing](CONTRIBUTING.md)** — How to contribute to this project.
-- **[Workflow flowchart](WORKFLOW.md)** — Diagram of how to run the codebase.
+- **[Common issues](docs/TROUBLESHOOTING.md)** — libgfortran and other troubleshooting.
+- **[Contributing](docs/CONTRIBUTING.md)** — How to contribute to this project.
+- **[Workflow flowchart](docs/WORKFLOW.md)** — Diagram of how to run the codebase.
 
 ## Release
 
-Stable versions are published as [Releases](https://github.com/ankurk017/RCE_Emanuel/releases). Each release includes a tag (e.g. `v1.0.0`) and optional release notes. To use a specific version, clone the repo and check out the tag, or download the source tarball from the release page.
+Stable versions are published as [Releases](https://github.com/ankurk017/RCE_1D_Emanuel/releases). Each release includes a tag (e.g. `v1.0.0`) and optional release notes. To use a specific version, clone the repo and check out the tag, or download the source tarball from the release page.
 
 ## Contact
 
