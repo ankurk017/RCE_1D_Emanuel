@@ -1,0 +1,44 @@
+Parameter   Value   Units        Description
+--------------------------------------------
+RESTART     n       y/n          Restart from previous run? (y: use sounding.out; n: use sounding.in)
+ENDTIME     40.0    days         End time of integration
+DT          5.0     minutes      Time step
+AVTIME      10.0    days         Averaging time for final profiles
+PRINFREQ    12.0    hours        Output sampling interval for time series
+RADINT      y       y/n          Interactive radiation?
+ICLDS       y       y/n          Interactive clouds?
+TSINT       n       y/n          Interactive surface temperature (ocean)? n = fixed SST
+RADFREQ     3.0     hours        Frequency of radiation calls
+SCON        1360.0  W m^-2       Solar constant
+RLAT        15.0    degrees      Latitude
+MONTH       3       1-12         Starting month
+IDAY        1       1-31         Starting day
+HOUR        0       0-23         Starting hour
+TDEP        n       y/n          Time-dependent radiation?
+DDEP        n       y/n          Date-dependent radiation?
+DARAD       n       y/n          Diurnal-average radiation?
+ANRAD       y       y/n          Annual-average radiation?
+CALB        n       y/n          Calculate ocean albedo?
+ALB         0.32    0-1          Fixed surface albedo (if CALB=n)
+CO2         360.0   ppm          CO2 concentration
+CH4         1.7     ppm          CH4 concentration
+N2O         310.0   ppb          N2O concentration
+CFC11       280.0   ppt          CFC-11 concentration
+CFC12       484.0   ppt          CFC-12 concentration
+H2OI        y       y/n          Interactive water vapor?
+H2OM        1.0     -            Radiation H2O multiplier
+O3M         1       -            Radiation O3 multiplier
+DCONV       y       y/n          Dry adiabatic adjustment?
+MCONV       y       y/n          Moist convection scheme?
+FLUXSWITCH  y       y/n          Turbulent surface fluxes on/off
+BETA        1.0     0-1          Fraction of surface covered by water
+DEPTH       2       m            Mixed-layer depth
+VS0         5       m s^-1       Surface wind speed
+WCUBE       y       y/n          Use cubic profile of omega?
+WMAX        0.0     hPa hour^-1  Extreme value of omega (negative = upward)
+PERIOD      2000.0  days         Period of omega variation
+PWZERO      80.0    hPa          Pressure where omega = 0 (top)
+PWBOTTOM    1000.0  hPa          Pressure where omega = 0 (bottom)
+PWMAX       750.0   hPa          Pressure where omega reaches extreme
+WTG         n       y/n          Apply weak-temperature-gradient approximation?
+PFIX        850.0   hPa          Pressure above which sounding fixed
