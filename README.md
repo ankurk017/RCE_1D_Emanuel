@@ -45,14 +45,15 @@ or, if required: `ssh stratus` or `ssh rayleigh`, then `ssh meteor`.
 **Setup and test:**
 
 ```bash
-# From the repo root after cloning
+git clone https://github.com/ankurk017/RCE_1D_Emanuel.git
+cd RCE_1D_Emanuel
 module load hdf5/1.14.6-gcc-11.5.0-cmrr
 make rebuild
-./run_RCE.sh --output_folder temp
+./run_RCE.sh --output_folder rce_output_test
 ```
 
 > [!NOTE]
-> The output directory (e.g. `temp`) must not already exist; the script will create it.
+> The output directory (e.g. `rce_output_test`) must not already exist; the script will create it.
 
 ## Arguments
 
