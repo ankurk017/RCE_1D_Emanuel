@@ -34,6 +34,26 @@ source /rtmp/akumar/conda/bin/activate rce
 
 Then run the model and plotting as in the examples below. To recreate the env elsewhere, use `conda env create -f rce_environment.yml`.
 
+## Working on Meteor
+
+To run the model on **Meteor**, connect via SSH (either directly or via a login node), then set up and build in the repo:
+
+**Connect:**  
+`ssh meteor`  
+or, if required: `ssh stratus` or `ssh rayleigh`, then `ssh meteor`.
+
+**Setup and test:**
+
+```bash
+# From the repo root after cloning
+module load hdf5/1.14.6-gcc-11.5.0-cmrr
+make rebuild
+./run_RCE.sh --output_folder temp
+```
+
+> [!NOTE]
+> The output directory (e.g. `temp`) must not already exist; the script will create it.
+
 ## Arguments
 
 | Argument | Description | Default |
