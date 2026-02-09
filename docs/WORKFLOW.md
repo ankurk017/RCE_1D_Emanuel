@@ -12,7 +12,7 @@ flowchart TD
     E --> F[table_to_params.py: table → params_ver2.in]
     F --> G["execute_rce.sh: create run dir, symlink output"]
     G --> H["Run Fortran: rc_ver2unix"]
-    H --> I{--plot yes?}
+    H --> I{--plot / -p?}
     I -->|Yes| J[plot_rce_outputs.py → output/figs/]
     I -->|No| K[Outputs in run directory]
     J --> K
