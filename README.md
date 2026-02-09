@@ -11,7 +11,7 @@ This repository is an adaptation of the original **RCE MIT Single-Column Model**
 
 - **Table-format parameters**: A human-readable parameter table (`params_ver2_table.in`) with Parameter, Value, Units, and Description columns. A Python script (`scripts/table_to_params.py`) converts it to the value-only `params_ver2.in` expected by the Fortran program.
 - **Run and execute scripts**: `run_RCE.sh` provides a single entry point with options for output directory, parameter table file, and optional plotting. `execute_rce.sh` creates a user-specified run directory and a symlink so the model still reads/writes through `output/`, and picks the right executable by platform (Linux/Mac/Windows).
-- **Python plotting**: `plotting/plot_rce_outputs.py` generates figures from model output (e.g. profiles, time series). Use `--plot yes` in `run_RCE.sh` to run the model and then produce plots in `output/figs/`.
+- **Python plotting**: `plotting/plot_rce_outputs.py` generates figures from model output (e.g. profiles, time series). Use `--plot`, `-p`, or `--plot true` in `run_RCE.sh` to run the model and then produce plots in `output/figs/`.
 - **Conda environment**: `rce_environment.yml` and a shared conda env so students can run without installing conda or building the Fortran executable themselves.
 - **Build support**: A `Makefile` (and `make rebuild`) to recompile `rc_ver2unix` from `rc_ver2.f` on different systems (e.g. when `libgfortran` is missing).
 - **Run-directory bookkeeping**: The run scripts copy the parameter table and a readable parameter summary into each run directory for reproducibility.
@@ -21,6 +21,7 @@ This repository is an adaptation of the original **RCE MIT Single-Column Model**
 
 ```bash
 ./run_RCE.sh --output_folder my_run --table params_ver2_table.in
+# or with short options: ./run_RCE.sh -o my_run -t params_ver2_table.in
 ```
 
 ## Using the shared environment
@@ -57,13 +58,15 @@ make rebuild
 
 ## Arguments
 
-| Argument | Description | Default |
-|----------|-------------|---------|
-| `--output_folder` | Output directory (must not exist). | required |
-| `--table` | Parameter table file (same format as `params_ver2_table.txt`). | `params_ver2_table.in` |
-| `--plot yes` | After the run, generate plots into `output/figs/`. | no |
+Long and short forms are supported:
 
-Positional form: you can pass the output folder as the first argument instead of `--output_folder NAME`.
+| Argument | Short | Description | Default |
+|----------|--------|-------------|---------|
+| `--output_folder` | `-o` | Output directory (must not exist). | required |
+| `--table` | `-t` | Parameter table file (same format as `params_ver2_table.txt`). | `params_ver2_table.in` |
+| `--plot` | `-p` | After the run, generate plots into `output/figs/`. Use as a flag or `--plot true`. | no |
+
+Positional form: you can pass the output folder as the first argument instead of `--output_folder` / `-o`.
 
 > [!NOTE]
 > The output folder must not already exist; the script will create it. Choose a new name for each run (e.g. `SST25_run1`).
@@ -73,23 +76,26 @@ Positional form: you can pass the output folder as the first argument instead of
 ```bash
 # Default table, output in my_run/
 ./run_RCE.sh --output_folder my_run --table params_ver2_table.in
+./run_RCE.sh -o my_run -t params_ver2_table.in
 
 # Custom table file
 ./run_RCE.sh --output_folder SST28_run1 --table my_params.in
 
-# Run and then generate plots
-./run_RCE.sh --output_folder SST25_wind5 --table params_ver2_table.in --plot yes
+# Run and then generate plots (flag or --plot true)
+./run_RCE.sh --output_folder SST25_wind5 --table params_ver2_table.in --plot
+./run_RCE.sh -o SST25_wind5 -t params_ver2_table.in -p
+./run_RCE.sh -o SST25_wind5 --plot true
 
 # Positional output folder
 ./run_RCE.sh my_run --table params_ver2_table.in
 ./run_RCE.sh my_run
-``` 
+```
 
 > [!NOTE]
 > **Input files:** `params_ver2_table.in` is the parameter input file — edit it to change model parameters (e.g. SST, time step, radiation options). Also edit **`sounding.in`** for SST. See **`params_ver2.in_README`** for parameter meanings; **`Users_guide.pdf`** for the full model description.
 
 > [!TIP]
-> To get plots automatically after a run, add `--plot yes`; figures are written to `output/figs/`.
+> To get plots automatically after a run, add `--plot`, `-p`, or `--plot true`; figures are written to `output/figs/`.
 
 - **[Common issues](docs/TROUBLESHOOTING.md)** — libgfortran and other troubleshooting.
 - **[Contributing](docs/CONTRIBUTING.md)** — How to contribute to this project.

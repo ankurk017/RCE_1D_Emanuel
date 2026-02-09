@@ -4,16 +4,19 @@
 # Converts params_ver2_table.in -> params_ver2.in, then runs execute_rce.sh.
 #
 # Usage:
-#   ./run_RCE.sh --output_folder RUN_DIR [--table FILE] [--plot yes]
-#   ./run_RCE.sh RUN_DIR [--table FILE] [--plot yes]   (positional still supported)
+#   ./run_RCE.sh --output_folder RUN_DIR [--table FILE] [--plot]
+#   ./run_RCE.sh -o RUN_DIR [-t FILE] [-p]   (short options)
+#   ./run_RCE.sh RUN_DIR [--table FILE] [--plot]   (positional still supported)
 #
 # Options:
-#   --plot yes   After the run, generate plots into output/figs/ (default: no).
+#   --output_folder, -o   Output directory (required unless positional).
+#   --table, -t           Parameter table file (default: params_ver2_table.in).
+#   --plot, -p            After the run, generate plots into output/figs/. Optional value: true (or use as flag).
 #
 # Examples:
 #   ./run_RCE.sh --output_folder test_output --table params_ver2_table.in
-#   ./run_RCE.sh --output_folder SST25_fixedSST_wind5 --plot yes
-#   ./run_RCE.sh SST28_run1 --table my_params_table.in --plot yes
+#   ./run_RCE.sh -o SST25_fixedSST_wind5 -p
+#   ./run_RCE.sh SST28_run1 -t my_params_table.in --plot true
 #
 set -euo pipefail
 
@@ -24,27 +27,32 @@ PLOT="no"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --output_folder|--output-folder)
-      [[ $# -ge 2 ]] || { echo "ERROR: --output_folder requires a path"; exit 2; }
+    --output_folder|--output-folder|-o)
+      [[ $# -ge 2 ]] || { echo "ERROR: --output_folder / -o requires a path"; exit 2; }
       RUN_DIR="$2"
       shift 2
       ;;
-    --table)
-      [[ $# -ge 2 ]] || { echo "ERROR: --table requires a path"; exit 2; }
+    --table|-t)
+      [[ $# -ge 2 ]] || { echo "ERROR: --table / -t requires a path"; exit 2; }
       TABLE_FILE="$2"
       shift 2
       ;;
-    --plot)
-      [[ $# -ge 2 ]] || { echo "ERROR: --plot requires a value (e.g. yes)"; exit 2; }
-      if [[ "$2" == "yes" || "$2" == "y" ]]; then
+    --plot|-p)
+      if [[ $# -ge 2 && "$2" != -* ]]; then
+        if [[ "$2" == "true" || "$2" == "yes" || "$2" == "y" ]]; then
+          PLOT="yes"
+        fi
+        shift 2
+      else
         PLOT="yes"
+        shift
       fi
-      shift 2
       ;;
     -*)
       echo "ERROR: Unknown option: $1"
-      echo "Usage: ./run_RCE.sh --output_folder RUN_DIR [--table FILE] [--plot yes]"
-      echo "   or: ./run_RCE.sh RUN_DIR [--table FILE] [--plot yes]"
+      echo "Usage: ./run_RCE.sh --output_folder RUN_DIR [--table FILE] [--plot]"
+      echo "   or: ./run_RCE.sh -o RUN_DIR [-t FILE] [-p]"
+      echo "   or: ./run_RCE.sh RUN_DIR [--table FILE] [--plot]"
       exit 2
       ;;
     *)
@@ -60,8 +68,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$RUN_DIR" ]]; then
-  echo "Usage: ./run_RCE.sh --output_folder RUN_DIR [--table FILE] [--plot yes]"
-  echo "   or: ./run_RCE.sh RUN_DIR [--table FILE] [--plot yes]"
+  echo "Usage: ./run_RCE.sh --output_folder RUN_DIR [--table FILE] [--plot]"
+  echo "   or: ./run_RCE.sh -o RUN_DIR [-t FILE] [-p]"
+  echo "   or: ./run_RCE.sh RUN_DIR [--table FILE] [--plot]"
   exit 2
 fi
 
